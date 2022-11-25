@@ -16,6 +16,7 @@ import banner2 from '../img/banner2.jpg'
 import banner3 from '../img/banner3.jpg'
 import logo from '../img/logo2.png'
 
+
 export default function Appbar() {
 
   var [pokemon, setPokemon] = useState("");
@@ -30,21 +31,24 @@ export default function Appbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="center" style={{ backgroundColor: "#37474F", textAlign: "center" }}>
+      <AppBar position="center" style={{ backgroundColor: "#37474F", textAlign: "center"   }}>
         <Toolbar style={{ justifyContent: "center" }}>
           <img src={logo} width="14%" ></img>
         </Toolbar>
       </AppBar>
 
       <CCarousel controls transition="crossfade">
-        <CCarouselItem>
-          <CImage className="d-block w-100" src={banner2} alt="slide 1" width="100%" />
+        <CCarouselItem >
+          <CImage style={{  borderBottomLeftRadius:80,
+              borderBottomRightRadius:80,}} className="d-block w-100" src={banner2} alt="slide 1" width="100%" />
         </CCarouselItem>
         <CCarouselItem>
-          <CImage className="d-block w-100" src={banner} alt="slide 2" />
+          <CImage style={{  borderBottomLeftRadius:80,
+              borderBottomRightRadius:80,}} className="d-block w-100" src={banner} alt="slide 2" />
         </CCarouselItem>
         <CCarouselItem>
-          <CImage className="d-block w-100" src={banner3} alt="slide 3" />
+          <CImage style={{  borderBottomLeftRadius:80,
+              borderBottomRightRadius:80,}} className="d-block w-100" src={banner3} alt="slide 3" />
         </CCarouselItem>
       </CCarousel>
       <span> &nbsp;</span><br></br>

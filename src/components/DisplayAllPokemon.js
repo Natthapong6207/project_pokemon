@@ -101,8 +101,8 @@ export default function DisplayAllPokemon({ pokemon }) {
                                         <CCard onClick={() => {
                                             saveValue(val);
 
-                                        }} className="h-100" style={{backgroundImage: `url(${bgcard3})`, backgroundSize: 'fit', border: "4px solid #d3d3d3" }}>
-                                            <CCardImage orientation="top" src={'https://img.pokemondb.net/artwork/large/' + val.name + '.jpg'} className="hover-zoom" backgroundSize="fit" />
+                                        }} className="h-100" style={{backgroundImage: `url(${bgcard3})`, border: "4px solid #d3d3d3" }}>
+                                            <CCardImage orientation="top" src={'https://img.pokemondb.net/artwork/large/' + val.name + '.jpg'} className="hover-zoom" /* style={{objectFit: 'fill'}} */ />
                                             <CCardBody>
                                                 <CCardTitle style={{ backgroundColor: "#9fbce4", border: "3px solid #d3d3d3", color: "white", borderRadius: '5px', padding: "5%", backgroundSize: 'cover' }}>{val.name}</CCardTitle>
                                                 <CCardText>
