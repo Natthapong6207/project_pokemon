@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '../index.css';
 import { useState, useEffect } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -30,7 +31,7 @@ export default function Appbar() {
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box className="font-face-gm" sx={{ flexGrow: 1 }}>
       <AppBar position="center" style={{ backgroundColor: "#37474F", textAlign: "center"   }}>
         <Toolbar style={{ justifyContent: "center" }}>
           <img src={logo} width="14%" ></img>
@@ -53,7 +54,7 @@ export default function Appbar() {
       </CCarousel>
       <span> &nbsp;</span><br></br>
       <Container max-width="100%" >
-        <span > <TextField fullWidth sx={{ m: 1 }} 
+        <span   > <TextField fullWidth sx={{ m: 1 }} 
           id="outlined-helperText"
           label="Search"
           helperText="Search by Name"

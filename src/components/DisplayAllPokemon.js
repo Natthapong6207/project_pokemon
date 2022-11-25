@@ -1,10 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { Button, Link } from '@mui/material';
 import { Remove } from '@mui/icons-material';
@@ -23,6 +19,7 @@ import '../style.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
+
 
 export default function DisplayAllPokemon({ pokemon }) {
     const [isLoading, setisLoading] = useState(false);
@@ -63,7 +60,7 @@ export default function DisplayAllPokemon({ pokemon }) {
 
     return (
         <div style={{ backgroundImage: `url(${bgcard4})`, maxWidth: "100%", backgroundSize: 'cover' }}>
-            <Container style={{ textAlign: 'center' }}>
+            <Container style={{ textAlign: 'center', maxWidth: "100%" }}>
                 {isLoading ? (loading())
                     : pokemon != "" ? (
                         <Container>
@@ -269,7 +266,7 @@ export default function DisplayAllPokemon({ pokemon }) {
         { modalShow ? console.log(detail) : console.log('ไม่มีค่านะ') }
 
         return (
-            <Modal {...props} aria-labelledby="contained-modal-title-vcenter" size="lg" style={{ backgroundImage: `url(${bgDetaill})`, backgroundSize: 'cover'}}>
+            <Modal {...props} aria-labelledby="contained-modal-title-vcenter" className="font-face-gm"  size="lg" style={{ backgroundImage: `url(${bgDetaill})`, backgroundSize: 'cover'}}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Detail
@@ -311,7 +308,7 @@ export default function DisplayAllPokemon({ pokemon }) {
                                 {modalShow ? (detail.stats.map((s, index) => (
                                   
                                     <CListGroup className="mb-2" layout={`horizontal${'-xxl'}`} key={index}>
-                                        <CListGroupItem>{s.stat.name}</CListGroupItem>
+                                        <CListGroupItem>{s.stat.name.toUpperCase()}</CListGroupItem>
                                         <CListGroupItem>{s.base_stat}</CListGroupItem>
                                     </CListGroup>
                                     
