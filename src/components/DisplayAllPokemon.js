@@ -293,17 +293,18 @@ export default function DisplayAllPokemon({ pokemon }) {
                                 Weight: {detail.weight} lbs
                             </Col>
                             <Col xs={6} md={4}>
-                                .col-xs-6 .col-md-4
+                                
                             </Col>
                         </Row>
+                        <br></br>
                         <Row>
                             <Col xs={6} md={4}>
                                 Stat:
                             </Col>
                               <Col xs={12} md={8}>
                                 {modalShow ? (detail.stats.map((s, index) => (
-                                    <CListGroup className="mb-2" layout={`horizontal${s}`} key={index}>
-                                        <CListGroupItem>{s.stats}</CListGroupItem>
+                                    <CListGroup className="mb-2" layout={`horizontal${'-xxl'}`} key={index}>
+                                        <CListGroupItem>{s.stat.name}</CListGroupItem>
                                         <CListGroupItem>{s.base_stat}</CListGroupItem>
                                     </CListGroup>
                                 ))) : ('')}
