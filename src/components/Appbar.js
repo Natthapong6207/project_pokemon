@@ -4,62 +4,17 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import axios from 'axios';
-import Paper from '@mui/material/Paper';
 import DisplayAllPokemon from './DisplayAllPokemon';
-import { LocalDrinkSharp } from '@mui/icons-material';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+import { Container } from '@mui/system';
+import { CCarousel, CCarouselItem, CImage } from '@coreui/react';
+import banner from '../img/banner1.png'
+import banner2 from '../img/banner2.jpg'
+import banner3 from '../img/banner3.jpg'
+import logo from '../img/logo2.png'
 
 export default function Appbar() {
 
@@ -75,33 +30,38 @@ export default function Appbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-    
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            Pokemon
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              onChange={(e) => setPokemon(e.target.value)}
-              onKeyUp={handleSearch}
-            />
-          </Search>
-    
+      <AppBar position="center" style={{ backgroundColor: "#37474F", textAlign: "center" }}>
+        <Toolbar style={{ justifyContent: "center" }}>
+          <img src={logo} width="14%" ></img>
         </Toolbar>
       </AppBar>
-      <span> &nbsp;</span>
-      <span> &nbsp;</span>
-      <DisplayAllPokemon pokemon={ pokemon } />
-    </Box>
+
+      <CCarousel controls transition="crossfade">
+        <CCarouselItem>
+          <CImage className="d-block w-100" src={banner2} alt="slide 1" width="100%" />
+        </CCarouselItem>
+        <CCarouselItem>
+          <CImage className="d-block w-100" src={banner} alt="slide 2" />
+        </CCarouselItem>
+        <CCarouselItem>
+          <CImage className="d-block w-100" src={banner3} alt="slide 3" />
+        </CCarouselItem>
+      </CCarousel>
+      <span> &nbsp;</span><br></br>
+      <Container max-width="100%" >
+        <span > <TextField fullWidth sx={{ m: 1 }} 
+          id="outlined-helperText"
+          label="Search"
+          helperText="Search by Name"
+          onChange={(e) => setPokemon(e.target.value)}
+          onKeyUp={handleSearch}
+
+          /></span>
+
+      </Container>
+      <span> &nbsp;</span><br></br>  <span> &nbsp;</span>
+
+      <DisplayAllPokemon pokemon={pokemon} />
+    </Box >
   );
 }

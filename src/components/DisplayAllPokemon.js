@@ -17,6 +17,7 @@ import bgcard from '../img/bg.jpg'
 import bgcard2 from '../img/bg2.png'
 import bgcard3 from '../img/bg5.png'
 import bgcard4 from '../img/bg6.png'
+import bgDetaill from '../img/bgDetaill.jpg'
 import bgMessage from '../img/bgMessage.jpg'
 import '../style.css'
 import Row from 'react-bootstrap/Row';
@@ -70,23 +71,27 @@ export default function DisplayAllPokemon({ pokemon }) {
                                 {result.map((val) => (
                                     val.name.includes(pokemon) ? (
                                         <CCol xs>
-                                            <CCard className="h-100" style={{ backgroundImage: `url(${bgcard3})`, backgroundSize: 'cover' }}>
-                                                <CCardImage orientation="top" src={val.sprites.front_default} className="hover-zoom" />
-                                                <CCardBody>
-                                                    <h2>{val.name}</h2>
-                                                    <CCardText>
-                                                        <CRow xs={{ gutter: 2 }}>
-                                                            {val.types.map((t) =>
-                                                                <CCol xs={{ span: 6 }}>{typeEdit(t.type.name)}</CCol>
-                                                            )}
-                                                        </CRow>
-                                                    </CCardText>
-                                                </CCardBody>
-                                            </CCard>
+                                            <CCard onClick={() => {
+                                            saveValue(val);
+
+                                        }} className="h-100" style={{ backgroundImage: `url(${bgcard3})`, backgroundSize: 'fit', border: "4px solid #d3d3d3" }}>
+                                            <CCardImage orientation="top" src={'https://img.pokemondb.net/artwork/large/' + val.name + '.jpg'} className="hover-zoom" backgroundSize="fit" />
+                                            <CCardBody>
+                                                <CCardTitle style={{ backgroundColor: "#9fbce4", border: "3px solid #d3d3d3", color: "white", borderRadius: '5px', padding: "5%", backgroundSize: 'cover' }}>{val.name}</CCardTitle>
+                                                <CCardText>
+                                                    <CRow xs={{ gutter: 2 }}>
+                                                        {val.types.map((t) =>
+                                                            <CCol xs={{ span: 6 }}>{typeEdit(t.type.name)}</CCol>
+                                                        )}
+                                                    </CRow>
+                                                </CCardText>
+                                            </CCardBody>
+                                        </CCard>
                                         </CCol>
                                     ) : ('')
                                 ))}
                             </CRow>
+                            modalShow ? <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} /> : ('')
                         </Container>
                     )
                         : <Container>
@@ -96,7 +101,7 @@ export default function DisplayAllPokemon({ pokemon }) {
                                         <CCard onClick={() => {
                                             saveValue(val);
 
-                                        }} className="h-100" style={{ backgroundImage: `url(${bgcard3})`, backgroundSize: 'fit', border: "4px solid #d3d3d3" }}>
+                                        }} className="h-100" style={{backgroundImage: `url(${bgcard3})`, backgroundSize: 'fit', border: "4px solid #d3d3d3" }}>
                                             <CCardImage orientation="top" src={'https://img.pokemondb.net/artwork/large/' + val.name + '.jpg'} className="hover-zoom" backgroundSize="fit" />
                                             <CCardBody>
                                                 <CCardTitle style={{ backgroundColor: "#9fbce4", border: "3px solid #d3d3d3", color: "white", borderRadius: '5px', padding: "5%", backgroundSize: 'cover' }}>{val.name}</CCardTitle>
@@ -264,17 +269,17 @@ export default function DisplayAllPokemon({ pokemon }) {
         { modalShow ? console.log(detail) : console.log('ไม่มีค่านะ') }
 
         return (
-            <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+            <Modal {...props} aria-labelledby="contained-modal-title-vcenter" size="lg" style={{ backgroundImage: `url(${bgDetaill})`, backgroundSize: 'cover'}}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        รายละเอียด
+                        Detail
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
                     <Container>
                         <Row>
                             <Col xs={12} md={8}>
-                                {modalShow ? <img width="100%" src={detail.sprites.front_default}></img> : ('')}
+                                {modalShow ? <img width="100%" src={'https://img.pokemondb.net/artwork/large/' + detail.name + '.jpg'}></img> : ('')}
                             </Col>
                             <Col xs={6} md={4}>
                                 {modalShow ? <><h2> {detail.name} </h2>
@@ -302,12 +307,30 @@ export default function DisplayAllPokemon({ pokemon }) {
                                 Stat:
                             </Col>
                               <Col xs={12} md={8}>
+
                                 {modalShow ? (detail.stats.map((s, index) => (
+                                  
                                     <CListGroup className="mb-2" layout={`horizontal${'-xxl'}`} key={index}>
                                         <CListGroupItem>{s.stat.name}</CListGroupItem>
                                         <CListGroupItem>{s.base_stat}</CListGroupItem>
                                     </CListGroup>
+                                    
                                 ))) : ('')}
+                            </Col>  
+                        </Row>
+                        <br></br>
+                        <Row>
+                            <Col xs={6} md={4}>
+                                Abilities:
+                            </Col>
+                              <Col xs={12} md={8}>
+                              <CListGroup className="mb-2" layout={`horizontal${'-xxl'}`} >
+                                {modalShow ? (detail.abilities.map((s) => (
+                                    <Col xs={6} md={4}>
+                                        <CListGroupItem>{s.ability.name}</CListGroupItem>
+                                    </Col>
+                                ))) : ('')}
+                                </CListGroup>
                             </Col>  
                         </Row>
                     </Container>
